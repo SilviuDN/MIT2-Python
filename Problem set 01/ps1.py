@@ -54,8 +54,37 @@ def greedy_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    # TODO: Your code here
-    pass
+
+    transports = []
+    newTrip = []
+    newTripWeight = 0
+    
+    remaining = cows.copy()
+    
+    while len(remaining) > 0: 
+        heaviest_by_name = sorted(remaining, key = remaining.__getitem__, reverse = True)
+        
+        for name in heaviest_by_name: # iterate through all remaining cows, add by heaviest fit first
+            
+            if newTripWeight + remaining[name] <= limit:
+                newTrip.append(name) # add cow name to next trip list
+                newTripWeight += remaining[name] # increment the weight
+                print(newTripWeight)
+                del(remaining[name])  # remove cow from remaining
+            
+# =============================================================================
+#             if newTripWeight == limit: # don't waste time checking cows if this trip is full
+#                 break
+#             
+#             if newTripWeight > limit:
+#                 raise ValueError ("ship will crash, weight exceeded, abort packing process")
+# =============================================================================
+                
+        transports.append(newTrip)
+        newTrip = []
+        newTripWeight = 0
+    
+    return transports
 
 
 # Problem 2
@@ -108,7 +137,7 @@ lines to print the result of your problem.
 """
 
 cows = load_cows("ps1_cow_data.txt")
-limit=100
+limit=10
 print(cows)
 
 print(greedy_cow_transport(cows, limit))
