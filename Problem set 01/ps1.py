@@ -108,8 +108,23 @@ def brute_force_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    # TODO: Your code here
-    pass
+    optimal = None
+    
+    for partition in get_partitions(cows):        
+        if isUnderWeightLimit(cows, partition, limit):            
+            if (optimal == None) or len(partition) < len(optimal): 
+                optimal = partition 
+                   
+    return optimal
+
+def isUnderWeightLimit(cows, partition, limit):
+    for cowSubset in partition:
+        cowSubsetWeight = 0
+        for cow in cowSubset:
+            cowSubsetWeight += cows[cow]        
+        if cowSubsetWeight > limit:
+            return False        
+    return True
 
         
 # Problem 3
