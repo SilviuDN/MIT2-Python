@@ -154,8 +154,13 @@ lines to print the result of your problem.
 cows = load_cows("ps1_cow_data.txt")
 limit=10
 print(cows)
-
+start = time.time()
 print(greedy_cow_transport(cows, limit))
-print(brute_force_cow_transport(cows, limit))
+end = time.time()
+print("greedy: " + str( end - start ) )
 
+start = time.time()
+print(brute_force_cow_transport(cows, limit))
+end = time.time()
+print("brute force: " + str( end - start ) )
 
