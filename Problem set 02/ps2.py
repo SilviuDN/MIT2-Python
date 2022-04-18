@@ -83,7 +83,10 @@ class RectangularRoom(object):
         width: an integer > 0
         height: an integer > 0
         """
-        raise NotImplementedError
+        #raise NotImplementedError
+        self.width = width
+        self.height = height
+        self.cleanedTiles = []
     
     def cleanTileAtPosition(self, pos):
         """
@@ -93,7 +96,10 @@ class RectangularRoom(object):
 
         pos: a Position
         """
-        raise NotImplementedError
+        #raise NotImplementedError
+        newlyCleanedTile = (pos.getX(), pos.getY())
+        if newlyCleanedTile not in self.cleanedTiles:
+            self.cleanedTiles.append( newlyCleanedTile )
 
     def isTileCleaned(self, m, n):
         """
@@ -139,6 +145,16 @@ class RectangularRoom(object):
         returns: True if pos is in the room, False otherwise.
         """
         raise NotImplementedError
+
+#test RectangularRoom initialization
+testRoom = RectangularRoom(4,4)
+print(testRoom.cleanedTiles)
+
+#test Position initialization, and the corect functioning of the cleanTileAtPosition method
+justCleaned = Position(2,2)
+testRoom.cleanTileAtPosition( justCleaned )
+print(testRoom.cleanedTiles)
+
 
 
 # === Problem 2
