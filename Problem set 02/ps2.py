@@ -111,7 +111,9 @@ class RectangularRoom(object):
         n: an integer
         returns: True if (m, n) is cleaned, False otherwise
         """
-        raise NotImplementedError
+        #raise NotImplementedError
+        currentTile = (m, n)
+        return ( currentTile in self.cleanedTiles )
     
     def getNumTiles(self):
         """
@@ -119,7 +121,8 @@ class RectangularRoom(object):
 
         returns: an integer
         """
-        raise NotImplementedError
+        #raise NotImplementedError
+        return self.width * self.height
 
     def getNumCleanedTiles(self):
         """
@@ -127,7 +130,8 @@ class RectangularRoom(object):
 
         returns: an integer
         """
-        raise NotImplementedError
+        #raise NotImplementedError
+        return len( self.cleanedTiles )
 
     def getRandomPosition(self):
         """
@@ -155,6 +159,13 @@ justCleaned = Position(2,2)
 testRoom.cleanTileAtPosition( justCleaned )
 print(testRoom.cleanedTiles)
 
+#test isTileCleaned method
+print( testRoom.isTileCleaned( 2,2 ) )
+print( testRoom.isTileCleaned( 2,3 ) )
+
+#test getNumTiles, getNumCleanedTiles methods
+print( testRoom.getNumTiles() )
+print( testRoom.getNumCleanedTiles() )
 
 
 # === Problem 2
