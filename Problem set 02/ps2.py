@@ -139,7 +139,10 @@ class RectangularRoom(object):
 
         returns: a Position object.
         """
-        raise NotImplementedError
+        #raise NotImplementedError
+        randomX = math.floor( random.random() * self.width )
+        randomY = random.randint( 0, self.height )
+        return ( randomX, randomY )
 
     def isPositionInRoom(self, pos):
         """
@@ -148,7 +151,8 @@ class RectangularRoom(object):
         pos: a Position object.
         returns: True if pos is in the room, False otherwise.
         """
-        raise NotImplementedError
+        #raise NotImplementedErrorre
+        return pos.getX() >= 0 and pos.getX() < self.width and pos.getY() >= 0 and pos.getY() < self.height
 
 #test RectangularRoom initialization
 testRoom = RectangularRoom(4,4)
@@ -167,6 +171,12 @@ print( testRoom.isTileCleaned( 2,3 ) )
 print( testRoom.getNumTiles() )
 print( testRoom.getNumCleanedTiles() )
 
+#test getRandomPosition method
+print( testRoom.getRandomPosition() )
+
+#test isPositionInRoom method
+print( testRoom.isPositionInRoom(Position(2,2)) )
+print( testRoom.isPositionInRoom(Position(2,5)) )
 
 # === Problem 2
 class Robot(object):
