@@ -97,7 +97,13 @@ class RectangularRoom(object):
         pos: a Position
         """
         #raise NotImplementedError
-        newlyCleanedTile = (pos.getX(), pos.getY())
+        #print( 'Pos este: ', pos)
+        #print( 'X este: ', pos.getX())
+        #print( 'Y este: ', pos.getY())
+        x = math.floor(pos.getX())
+        y = math.floor(pos.getY())
+        newlyCleanedTile = (x, y)
+        #newlyCleanedTile = (pos.getX(), pos.getY())
         if newlyCleanedTile not in self.cleanedTiles:
             self.cleanedTiles.append( newlyCleanedTile )
 
@@ -141,8 +147,8 @@ class RectangularRoom(object):
         """
         #raise NotImplementedError
         randomX = math.floor( random.random() * self.width )
-        randomY = random.randint( 0, self.height )
-        return ( randomX, randomY )
+        randomY = random.randint( 0, self.height - 1 )
+        return Position(randomX,randomY )
 
     def isPositionInRoom(self, pos):
         """
@@ -154,29 +160,37 @@ class RectangularRoom(object):
         #raise NotImplementedErrorre
         return pos.getX() >= 0 and pos.getX() < self.width and pos.getY() >= 0 and pos.getY() < self.height
 
-#test RectangularRoom initialization
-testRoom = RectangularRoom(4,4)
-print(testRoom.cleanedTiles)
+# =============================================================================
+# #test RectangularRoom initialization
+# testRoom = RectangularRoom(4,4)
+# print(testRoom.cleanedTiles)
+# 
+# #test Position initialization, and the corect functioning of the cleanTileAtPosition method
+# justCleaned = Position(2,2)
+# testRoom.cleanTileAtPosition( justCleaned )
+# print(testRoom.cleanedTiles)
+# 
+# #test isTileCleaned method
+# print( testRoom.isTileCleaned( 2,2 ) )
+# print( testRoom.isTileCleaned( 2,3 ) )
+# 
+# #test getNumTiles, getNumCleanedTiles methods
+# print( testRoom.getNumTiles() )
+# print( testRoom.getNumCleanedTiles() )
+# 
+# #test getRandomPosition method
+# print( testRoom.getRandomPosition() )
+# 
+# #test isPositionInRoom method
+# print( testRoom.isPositionInRoom(Position(2,2)) )
+# print( testRoom.isPositionInRoom(Position(2,5)) )
+# =============================================================================
 
-#test Position initialization, and the corect functioning of the cleanTileAtPosition method
-justCleaned = Position(2,2)
-testRoom.cleanTileAtPosition( justCleaned )
-print(testRoom.cleanedTiles)
-
-#test isTileCleaned method
-print( testRoom.isTileCleaned( 2,2 ) )
-print( testRoom.isTileCleaned( 2,3 ) )
-
-#test getNumTiles, getNumCleanedTiles methods
-print( testRoom.getNumTiles() )
-print( testRoom.getNumCleanedTiles() )
-
-#test getRandomPosition method
-print( testRoom.getRandomPosition() )
-
-#test isPositionInRoom method
-print( testRoom.isPositionInRoom(Position(2,2)) )
-print( testRoom.isPositionInRoom(Position(2,5)) )
+print("###################### Test cleaningTiles #################################")
+room = RectangularRoom(2, 2)
+room.cleanTileAtPosition(Position(0.6, 0.3))
+print( room.isTileCleaned(0, 0) )
+#print( room.isTileCleaned( (0, 0) )
 
 # === Problem 2
 class Robot(object):
