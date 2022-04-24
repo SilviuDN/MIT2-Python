@@ -334,7 +334,7 @@ def runSimulation(num_robots, speed, width, height, min_coverage, num_trials,
 # Uncomment this line to see how much your simulation takes on average
 ##print(runSimulation(1, 1.0, 10, 10, 0.75, 30, StandardRobot))
 
-
+#Testeamos
 # === Problem 5
 class RandomWalkRobot(Robot):
     """
