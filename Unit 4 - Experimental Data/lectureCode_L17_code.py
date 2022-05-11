@@ -124,6 +124,7 @@ def fitData3(fileName):
 ##fitData3('springData.txt')
 ##pylab.show()
 
+
 def getTrajectoryData(fileName):
     dataFile = open(fileName, 'r')
     distances = []
