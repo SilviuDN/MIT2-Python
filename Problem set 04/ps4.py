@@ -118,6 +118,7 @@ End helper code
 """
 
 # Problem 1
+import numpy as np
 def generate_models(x, y, degs):
     """
     Generate regression models by fitting a polynomial for each degree in degs
@@ -131,7 +132,7 @@ def generate_models(x, y, degs):
         that minimizes the squared error of the fitting polynomial
     """
     # TODO
-    pass
+    return [np.polyfit(x, y, z) for z in degs]
 
 # Problem 2
 def r_squared(y, estimated):
@@ -144,7 +145,11 @@ def r_squared(y, estimated):
         a float for the R-squared error term
     """
     # TODO
-    pass
+    y, estimated = np.array(y), np.array(estimated)
+    temp = ((estimated - y)**2).sum()
+    obsMean = y.sum()/float(len(y))
+    normalize = ((obsMean - y)**2).sum()
+    return 1 - temp/normalize
 
 # Problem 3
 def evaluate_models_on_training(x, y, models):
